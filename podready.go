@@ -20,7 +20,7 @@ type HTTPHeader struct {
 func Wait() {
 
 	verbose := false
-	if verboseFromEnv := os.Getenv("POD_UP_VERBOSE"); verboseFromEnv == "true" {
+	if verboseFromEnv := os.Getenv("PODREADY_VERBOSE"); verboseFromEnv == "true" {
 		verbose = true
 	}
 
@@ -46,13 +46,13 @@ func Wait() {
 }
 
 func waitIstio() bool {
-	if os.Getenv("POD_UP_DO_NOT_WAIT_FOR_ISTIO") == "" {
+	if os.Getenv("PODREADY_DO_NOT_WAIT_FOR_ISTIO") == "true" {
 		return true
 	}
 
 	istioReadyUrl := "http://localhost:15020/healthz/ready"
 
-	if istioReadyUrlFromEnv := os.Getenv("POD_UP_ISTIO_READY_URL"); istioReadyUrlFromEnv != "" {
+	if istioReadyUrlFromEnv := os.Getenv("PODREADY_ISTIO_READY_URL"); istioReadyUrlFromEnv != "" {
 		istioReadyUrl = istioReadyUrlFromEnv
 	}
 
