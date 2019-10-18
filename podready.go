@@ -26,10 +26,11 @@ func Wait() {
 
 	// If we are not running in K8S, return immediately
 	if os.Getenv("KUBERNETES_SERVICE_HOST") == "" {
-		logTrue(verbose, "PodReady: Not in K8S")
+		logTrue(verbose, "PodReady: Not in K8S\n")
 		return
 	}
 
+	logTrue(verbose, "PodReady: ")
 	start := now()
 
 	for now() < start+20000 {
