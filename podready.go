@@ -42,7 +42,7 @@ func Wait() {
 
 		time.Sleep(600 * time.Millisecond)
 	}
-	logTrue(verbose, fmt.Sprintf("PodReady: Waited %0.2f seconds", (now()-start)/1000))
+	logTrue(verbose, fmt.Sprintf("Waited %.2f seconds\n", float32(now()-start)/1000.0))
 }
 
 func waitIstio() bool {
